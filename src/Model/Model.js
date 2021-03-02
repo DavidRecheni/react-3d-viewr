@@ -12,5 +12,5 @@ export default function Model({ rotation }) {
 
 
     // TODO Link rotation angle to mouse.
-    return gltf ? <primitive ref={mixer} object={gltf.scene} color='orange' position={[-2.5, 0, 0]} rotation={rotation} scale={[1, 1, 1]} /> : null
+    return gltf ? <primitive ref={mixer} object={gltf.scene} color='orange' position={[0, -1, 0]} rotation={rotation} scale={[.03, .03, .03]} /> : null
 }

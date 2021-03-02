@@ -12,8 +12,6 @@ function App() {
   const [rx, setRx] = useState(0)
   const [ry, setRy] = useState(0)
   const [rz, setRz] = useState(0)
-
-
   
   return (
     <Canvas
