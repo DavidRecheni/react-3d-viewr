@@ -4,15 +4,9 @@ import { Translations } from '../../../utils/controls'
 
 export default function Position({ position, setPosition }) {
 
-    const STEP = 0.1
-
-    const translateRight = axis => {
-        Translations.right(axis,position,setPosition)
-    }
-
-    const translateLeft =  axis => {
-        Translations.left(axis,position,setPosition)
-    }
+    const STEP = 0.01,
+        MIN = -2,
+        MAX = 2
 
     return (
         <div>
@@ -20,18 +14,15 @@ export default function Position({ position, setPosition }) {
             <div style={{ display: 'flex' }}>
                 <div>
                     <span>x</span>
-                    <button onClick={() => { translateLeft('x') }}>-</button>
-                    <button onClick={() => { translateRight('x') }}>+</button>
+                    <input type="range" min={MIN} max={MAX} step={STEP} value={position[0]} onChange={(e) => Translations('x', position, setPosition, e.target.value)} />
                 </div>
                 <div>
                     <span >y</span>
-                    <button onClick={() => { translateLeft('y') }}>-</button>
-                    <button onClick={() => { translateRight('y') }}>+</button>
+                    <input type="range" min={MIN} max={MAX} step={STEP} value={position[1]} onChange={(e) => Translations('y', position, setPosition, e.target.value)} />
                 </div>
                 <div>
                     <span>z</span>
-                    <button onClick={() => { translateLeft('z') }}>-</button>
-                    <button onClick={() => { translateRight('z') }}>+</button>
+                    <input type="range" min={MIN} max={MAX} step={STEP} value={position[2]} onChange={(e) => Translations('z', position, setPosition, e.target.value)} />
                 </div>
             </div>
         </div>

@@ -1,15 +1,34 @@
-import React, { useRef } from 'react'
+import * as THREE from 'three'
+import React, { useRef, useEffect } from 'react'
 import { useFrame, useLoader } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import ShapeGLTF from '../../Assets/model.gltf'
+import ShapeGLTF from '../../Assets/model.glb'
 
 export default function Model({ rotation, modelScale, position }) {
-    const mixer = useRef()
 
     const gltf = useLoader(GLTFLoader, ShapeGLTF)
+    const mixer = useRef()
 
-    // useFrame(() => mixer.current.rotation.y += 0.01)
+    const loadModel = () => {
+        if (gltf.animations.length) {
+            console.log('reload')
+            mixer.current = new THREE.AnimationMixer(gltf.scene);
+            gltf.animations.forEach(clip => {
+                const action = mixer.current.clipAction(clip)
+                action.setLoop(THREE.LoopRepeat)
+                action.play();
+            });
+        }
+    }
+
+    useEffect(() => {
+        loadModel(gltf)
+    }, [])
+
+    useFrame((state, delta) => {
+        mixer.current?.update(delta)
+    })
 
     // TODO Link rotation angle to mouse.
-    return gltf ? <primitive ref={mixer} object={gltf.scene} color='orange' position={position}  scale={modelScale} rotation={rotation} /> : null
+    return gltf ? <primitive object={gltf.scene} color='orange' position={position} scale={modelScale} rotation={rotation} /> : null
 }

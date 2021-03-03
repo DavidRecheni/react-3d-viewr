@@ -3,13 +3,9 @@ import { Translations } from '../../../utils/controls'
 
 export default function Rotation({ rotation, setRotation }) {
 
-    const rotateLeft = axis => {
-        Translations.left(axis, rotation, setRotation)
-    }
-
-    const rotateRight = axis => {
-        Translations.right(axis, rotation, setRotation)
-    }
+    const STEP = 0.01,
+        MIN = -2,
+        MAX = 2
 
 
     return (
@@ -18,18 +14,16 @@ export default function Rotation({ rotation, setRotation }) {
             <div style={{ display: 'flex' }}>
                 <div>
                     <span>x</span>
-                    <button onClick={() => { rotateLeft('x') }}>-</button>
-                    <button onClick={() => { rotateRight('x') }}>+</button>
+                    <input type="range" min={MIN} max={MAX} step={STEP} value={rotation[0]} onChange={(e) => Translations('x', rotation, setRotation, e.target.value)} />
+
                 </div>
                 <div>
                     <span >y</span>
-                    <button onClick={() => { rotateLeft('y') }}>-</button>
-                    <button onClick={() => { rotateRight('y') }}>+</button>
+                    <input type="range" min={MIN} max={MAX} step={STEP} value={rotation[1]} onChange={(e) => Translations('y', rotation, setRotation, e.target.value)} />
                 </div>
                 <div>
                     <span>z</span>
-                    <button onClick={() => { rotateLeft('z') }}>-</button>
-                    <button onClick={() => { rotateRight('z') }}>+</button>
+                    <input type="range" min={MIN} max={MAX} step={STEP} value={rotation[2]} onChange={(e) => Translations('z', rotation, setRotation, e.target.value)} />
                 </div>
             </div>
         </div>

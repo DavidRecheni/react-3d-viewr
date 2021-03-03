@@ -1,20 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 export default function Zoom({ setModelScale, modelScale }) {
 
-    const zoomIn = () => {
-        setModelScale(modelScale.map(e => e + .01))
+    const [zoom,setZoom] = useState(0)
+
+    const STEP = -.03
+
+    const zoomChange = (value) =>{
+        console.log(modelScale)
+        setZoom(value)
+        setModelScale(modelScale.map(axis => value*STEP))
     }
 
-    const zoomOut = () => {
-        setModelScale(modelScale.map(e => e - .01))
-    }
 
     return (
         <div>
             <span> Zoom </span>
-            <button onClick={_ => zoomOut()}> - </button>
-            <button onClick={_ => zoomIn()}> + </button>
+            <input type="range" min="-2" max="2" value={zoom} onChange={e => zoomChange(e.target.value)} / >            
         </div>
     )
 }

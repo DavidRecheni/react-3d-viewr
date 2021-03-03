@@ -1,30 +1,15 @@
 
-const STEP = 0.1
-
-export const Translations = {
-    left: (axis, arrGet, arrSet) => {
-        let [x, y, z] = arrGet
-        if (axis === 'x') {
-            x += STEP
-        } else if (axis === 'y') {
-            y += STEP
-        } else {
-            z += STEP
-        }
-        arrSet([x, y, z])
-    },
-    right: (axis, arrGet, arrSet) => {
-        let [x, y, z] = arrGet
-        if (axis === 'x') {
-            x -= STEP
-        } else if (axis === 'y') {
-            y -= STEP
-        } else {
-            z -= STEP
-        }
-        arrSet([x, y, z])
+export const Translations = (axis, arrGet, arrSet, value) => {
+    let [x, y, z] = arrGet
+    if (axis === 'x') {
+        x = Number(value)
+    } else if (axis === 'y') {
+        y = Number(value)
+    } else {
+        z = Number(value)
     }
-
+    arrSet([x, y, z])
 }
+
 
 

@@ -35,7 +35,6 @@ function App() {
         </Suspense>
       </Canvas>
       <Position position={position} setPosition={pos => setPosition(pos)} />
-      <Zoom modelScale={modelScale} setModelScale={scale => setModelScale(scale)} />
       <Rotation rotation={rotation} setRotation={rot => setRotation(rot)} />
     </div>
   );
