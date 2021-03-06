@@ -2,9 +2,11 @@ import React, {useState} from 'react'
 
 export default function Zoom({ setModelScale, modelScale }) {
 
-    const [zoom,setZoom] = useState(0)
+    const [zoom,setZoom] = useState(modelScale)
 
-    const STEP = -.03
+    const STEP = 0.01,
+    MIN = 0.1,
+    MAX = 4
 
     const zoomChange = (value) =>{
         console.log(modelScale)
@@ -12,11 +14,10 @@ export default function Zoom({ setModelScale, modelScale }) {
         setModelScale(modelScale.map(axis => value*STEP))
     }
 
-
     return (
         <div>
             <span> Zoom </span>
-            <input type="range" min="-2" max="2" value={zoom} onChange={e => zoomChange(e.target.value)} / >            
+            <input type="range" min={MIN} max={MAX}  step={STEP} value={zoom} onChange={e => zoomChange(e.target.value)} / >            
         </div>
     )
 }

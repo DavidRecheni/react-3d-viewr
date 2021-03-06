@@ -14,16 +14,16 @@ export default function Rotation({ rotation, setRotation }) {
             <div style={{ display: 'flex' }}>
                 <div>
                     <span>x</span>
-                    <input type="range" min={MIN} max={MAX} step={STEP} value={rotation[0]} onChange={(e) => Translations('x', rotation, setRotation, e.target.value)} />
+                    <input style={{ cursor: 'pointer' }} type="range" min={MIN} max={MAX} step={STEP} value={rotation[0]} onChange={(e) => Translations('x', rotation, setRotation, e.target.value)} />
 
                 </div>
                 <div>
                     <span >y</span>
-                    <input type="range" min={MIN} max={MAX} step={STEP} value={rotation[1]} onChange={(e) => Translations('y', rotation, setRotation, e.target.value)} />
+                    <input style={{ cursor: 'pointer' }} type="range" min={MIN} max={MAX} step={STEP} value={rotation[1]} onChange={(e) => Translations('y', rotation, setRotation, e.target.value)} />
                 </div>
                 <div>
                     <span>z</span>
-                    <input type="range" min={MIN} max={MAX} step={STEP} value={rotation[2]} onChange={(e) => Translations('z', rotation, setRotation, e.target.value)} />
+                    <input style={{ cursor: 'pointer' }} type="range" min={MIN} max={MAX} step={STEP} value={rotation[2]} onChange={(e) => Translations('z', rotation, setRotation, e.target.value)} />
                 </div>
             </div>
         </div>
