@@ -11,7 +11,6 @@ export default function Model({ rotation, modelScale, position }) {
 
     const loadModel = () => {
         if (gltf.animations.length) {
-            console.log('reload')
             mixer.current = new THREE.AnimationMixer(gltf.scene);
             gltf.animations.forEach(clip => {
                 const action = mixer.current.clipAction(clip)
@@ -29,6 +28,5 @@ export default function Model({ rotation, modelScale, position }) {
         mixer.current?.update(delta)
     })
 
-    // TODO Link rotation angle to mouse.
-    return gltf ? <primitive object={gltf.scene} color='orange' position={position} scale={modelScale} rotation={rotation} /> : null
+    return gltf && <primitive object={gltf.scene} color='orange' position={position} scale={modelScale} rotation={rotation} />
 }

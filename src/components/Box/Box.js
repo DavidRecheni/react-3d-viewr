@@ -7,7 +7,6 @@ export default function Box(props) {
   
     // Set up state for the hovered and active state
     const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
   
     // Rotate mesh every frame, this is outside of React without overhead
     useFrame(() => {
@@ -18,8 +17,7 @@ export default function Box(props) {
       <mesh
         {...props}
         ref={mesh}
-        scale={active ? [3, 3, 3] : [2, 2, 2]}
-        onClick={(event) => setActive(!active)}
+        scale={[3, 3, 3]}
         onPointerOver={(event) => setHover(true)}
         onPointerOut={(event) => setHover(false)}>
         <boxBufferGeometry args={[1, 1, 1]} />

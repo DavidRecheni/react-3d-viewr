@@ -12,6 +12,8 @@ import Rotation from './components/Control/Rotation/Rotation'
 import { OrbitControls } from '@react-three/drei'
 
 import './App.css'
+import { ToolsContainer } from './components/UI/UI'
+
 
 function App() {
 
@@ -19,31 +21,37 @@ function App() {
   const [modelScale, setModelScale] = useState([.03, .03, .03])
   const [rotation, setRotation] = useState([0, 0, 0])
 
+  const POINTLIGHT_POSITION = [10, 10, 10],
+    DEFAULT_CAMERA = { position: [0, 0, -10], fov: 50 }
+
+  const initCanvas = ({ camera, gl, scene }) => {
+    camera.lookAt(new THREE.Vector3(0, 0, 0))
+    scene.background = new THREE.Color('lightblue')
+    gl.shadowMap.enabled = true
+    gl.shadowMap.type = THREE.PCFSoftShadowMap
+  }
+
   return (
     <div id='main-container'>
       <Canvas
         style={{ position: 'absolute', cursor: 'grab' }}
-        camera={{ position: [0, 0, -10], fov: 50 }}
-        onCreated={({ camera, gl, scene }) => {
-          camera.lookAt(new THREE.Vector3(0, 0, 0))
-          scene.background = new THREE.Color('lightblue')
-          gl.shadowMap.enabled = true
-          gl.shadowMap.type = THREE.PCFSoftShadowMap
-        }}>
-        <OrbitControls
-          enableRotate={true}
-        />
+        camera={DEFAULT_CAMERA}
+        onCreated={ initCanvas }>
+        <OrbitControls />
         <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Suspense fallback={<Box color="orange" scale={[3, 3, 3]}></Box>}>
+        <pointLight position={POINTLIGHT_POSITION} />
+        <Suspense fallback={<Box color="orange"></Box>}>
           <Model position={position} modelScale={modelScale} rotation={rotation} />
         </Suspense>
       </Canvas>
-      <div style={{ zIndex: 1, position: 'fixed' }}>
-        <Position position={position} setPosition={pos => setPosition(pos)} />
-        <Rotation rotation={rotation} setRotation={rot => setRotation(rot)} />
+      <ToolsContainer bottom left>
+        <h4>Model control panel</h4>
+        <Position position={position} setPosition={setPosition} />
+        <Rotation rotation={rotation} setRotation={setRotation} />
+      </ToolsContainer>
+      <ToolsContainer bottom right>
         <Zoom modelScale={modelScale} setModelScale={sc => setModelScale(sc)}></Zoom>
-      </div>
+      </ToolsContainer>
     </div>
   );
 }

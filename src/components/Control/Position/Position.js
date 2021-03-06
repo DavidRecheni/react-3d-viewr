@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Container, Input } from '../../UI/UI'
+
 import { Translations } from '../../../utils/controls'
 
 export default function Position({ position, setPosition }) {
@@ -11,20 +13,20 @@ export default function Position({ position, setPosition }) {
     return (
         <div>
             <span> Position </span>
-            <div style={{ display: 'flex' }}>
-                <div>
+            <Container>
+                <Container alignCenter>
                     <span>x</span>
-                    <input style={{ cursor: 'pointer' }} type="range" min={MIN} max={MAX} step={STEP} value={position[0]} onChange={(e) => Translations('x', position, setPosition, e.target.value)} />
-                </div>
-                <div>
+                    <Input type="range" min={MIN} max={MAX} step={STEP} value={position[0]} onChange={(e) => Translations('x', position, setPosition, e.target.value)} />
+                </Container>
+                <Container alignCenter>
                     <span >y</span>
-                    <input style={{ cursor: 'pointer' }} type="range" min={MIN} max={MAX} step={STEP} value={position[1]} onChange={(e) => Translations('y', position, setPosition, e.target.value)} />
-                </div>
-                <div>
+                    <Input type="range" min={MIN} max={MAX} step={STEP} value={position[1]} onChange={(e) => Translations('y', position, setPosition, e.target.value)} />
+                </Container>
+                <Container alignCenter>
                     <span>z</span>
-                    <input style={{ cursor: 'pointer' }} type="range" min={MIN} max={MAX} step={STEP} value={position[2]} onChange={(e) => Translations('z', position, setPosition, e.target.value)} />
-                </div>
-            </div>
+                    <Input type="range" min={MIN} max={MAX} step={STEP} value={position[2]} onChange={(e) => Translations('z', position, setPosition, e.target.value)} />
+                </Container>
+            </Container>
         </div>
     )
 }

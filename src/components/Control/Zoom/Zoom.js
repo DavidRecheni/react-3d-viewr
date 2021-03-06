@@ -1,23 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { FaSearchMinus, FaSearchPlus } from 'react-icons/fa';
+import { Input } from '../../UI/UI'
 
 export default function Zoom({ setModelScale, modelScale }) {
 
-    const [zoom,setZoom] = useState(modelScale)
+    const [zoom, setZoom] = useState(modelScale)
 
     const STEP = 0.01,
-    MIN = 0.1,
-    MAX = 4
+        MIN = 0.1,
+        MAX = 4
 
-    const zoomChange = (value) =>{
-        console.log(modelScale)
+    const zoomChange = (value) => {
         setZoom(value)
-        setModelScale(modelScale.map(axis => value*STEP))
+        setModelScale(modelScale.map(axis => value * STEP))
     }
 
     return (
-        <div>
-            <span> Zoom </span>
-            <input type="range" min={MIN} max={MAX}  step={STEP} value={zoom} onChange={e => zoomChange(e.target.value)} / >            
-        </div>
+        <>
+            <FaSearchMinus />
+            <Input type="range" min={MIN} max={MAX} step={STEP} value={zoom} onChange={e => zoomChange(e.target.value)} />
+            <FaSearchPlus />
+        </>
     )
 }
