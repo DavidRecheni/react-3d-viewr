@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Container, Input } from '../../UI/UI'
+import { Container, Input } from '../UI'
 
-import { Translations } from '../../../utils/controls'
+import { Translations } from '../../utils/controls'
 
 export default function Position({ position, setPosition }) {
 

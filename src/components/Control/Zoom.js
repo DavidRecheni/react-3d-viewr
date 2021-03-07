@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaSearchMinus, FaSearchPlus } from 'react-icons/fa';
-import { Input } from '../../UI/UI'
+import { Input } from '../UI'
 
 export default function Zoom({ setModelScale, modelScale }) {
 

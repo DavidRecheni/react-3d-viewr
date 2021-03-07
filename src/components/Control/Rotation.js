@@ -1,6 +1,6 @@
 import React from 'react'
-import { Translations } from '../../../utils/controls'
-import { Container, Input } from '../../UI/UI'
+import { Translations } from '../../utils/controls'
+import { Container, Input } from '../UI'
 
 export default function Rotation({ rotation, setRotation }) {
 

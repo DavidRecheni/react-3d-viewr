@@ -2,17 +2,17 @@ import * as THREE from 'three'
 import React, { Suspense, useState } from 'react'
 import { Canvas } from 'react-three-fiber'
 
-import Model from './components/Model/Model'
-import Box from './components/Box/Box'
+import Model from './components/Model'
+import Box from './components/Box'
 
-import Zoom from './components/Control/Zoom/Zoom'
-import Position from './components/Control/Position/Position'
-import Rotation from './components/Control/Rotation/Rotation'
+import Zoom from './components/Control/Zoom'
+import Position from './components/Control/Position'
+import Rotation from './components/Control/Rotation'
 
 import { OrbitControls } from '@react-three/drei'
 
 import './App.css'
-import { ToolsContainer } from './components/UI/UI'
+import { ToolsContainer } from './components/UI'
 
 
 function App() {
