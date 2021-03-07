@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import React, { useRef, useEffect } from 'react'
 import { useFrame, useLoader } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import ShapeGLTF from '../../Assets/model.glb'
+import ShapeGLTF from '../Assets/model.glb'
 
 export default function Model({ rotation, modelScale, position }) {
 
