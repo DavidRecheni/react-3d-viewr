@@ -9,20 +9,20 @@ export default function Model({ rotation, modelScale, position }) {
     const gltf = useLoader(GLTFLoader, ShapeGLTF)
     const mixer = useRef()
 
-    const loadModel = () => {
-        if (gltf.animations.length) {
-            mixer.current = new THREE.AnimationMixer(gltf.scene);
-            gltf.animations.forEach(clip => {
-                const action = mixer.current.clipAction(clip)
-                action.setLoop(THREE.LoopRepeat)
-                action.play();
-            });
-        }
-    }
-
     useEffect(() => {
+        const loadModel = () => {
+            if (gltf.animations.length) {
+                mixer.current = new THREE.AnimationMixer(gltf.scene);
+                gltf.animations.forEach(clip => {
+                    const action = mixer.current.clipAction(clip)
+                    action.setLoop(THREE.LoopRepeat)
+                    action.play();
+                });
+            }
+        }
+
         loadModel(gltf)
-    }, [])
+    }, [gltf])
 
     useFrame((state, delta) => {
         mixer.current?.update(delta)
